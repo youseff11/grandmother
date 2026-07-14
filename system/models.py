@@ -39,6 +39,12 @@ class Phrase(models.Model):
         null=True,
         verbose_name='صورة الجملة',
     )
+    audio = models.FileField(
+        upload_to='phrase_audio/',
+        blank=True,
+        null=True,
+        verbose_name='التسجيل الصوتي',
+    )
     order = models.IntegerField(default=0, verbose_name='الترتيب')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='تاريخ الإنشاء')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='تاريخ التعديل')
@@ -62,6 +68,12 @@ class Person(models.Model):
         blank=True,
         null=True,
         verbose_name='الصورة',
+    )
+    audio = models.FileField(
+        upload_to='person_audio/',
+        blank=True,
+        null=True,
+        verbose_name='التسجيل الصوتي',
     )
     order = models.IntegerField(default=0, verbose_name='الترتيب')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='تاريخ الإنشاء')
