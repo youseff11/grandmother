@@ -54,6 +54,10 @@ class PhraseSerializer(serializers.ModelSerializer):
             return obj.audio.url
         return None
 
+    def create(self, validated_data):
+        validated_data.pop('remove_audio', False)
+        return super().create(validated_data)
+
     def update(self, instance, validated_data):
         remove_audio = validated_data.pop('remove_audio', False)
         if remove_audio and instance.audio:
@@ -94,6 +98,10 @@ class PersonSerializer(serializers.ModelSerializer):
                 return request.build_absolute_uri(obj.audio.url)
             return obj.audio.url
         return None
+
+    def create(self, validated_data):
+        validated_data.pop('remove_audio', False)
+        return super().create(validated_data)
 
     def update(self, instance, validated_data):
         remove_audio = validated_data.pop('remove_audio', False)
